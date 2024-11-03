@@ -1,0 +1,21 @@
+.btn {
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  padding: 0.2em 1.2em;
+  border-radius: 1em;
+  font-weight: 500;
+  color: $white !important;
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: fit-content !important;
+  background-color: $primary;
+  border: 1px solid $primary;
+
+  &:hover {
+    background-color: darken($primary, 10%);
+    transition: background-color 0.2s;
+  }
+}

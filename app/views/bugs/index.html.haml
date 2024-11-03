@@ -1,0 +1,13 @@
+= action_buttons do
+  = action_button 'New Bug', new_bug_path, class: 'btn btn-primary'
+
+%h2 Hall of Bugs
+.mt-2
+  = table do |t|
+    = t.header do
+      %th{ width: 100 } BugID
+      %th{ width: 300 } Title
+      %th{ width: 600 } Description
+      %th{ width: 100 } Status
+      %th{ width: 150 } Difficulty Level
+      %th.text-right Actions

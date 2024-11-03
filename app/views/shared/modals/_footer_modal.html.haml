@@ -1,0 +1,3 @@
+- footer_modal = flash[:footer_modal]
+- if footer_modal.present?
+  = footer_modal(footer_modal[:type], footer_modal[:title], footer_modal[:message]) 

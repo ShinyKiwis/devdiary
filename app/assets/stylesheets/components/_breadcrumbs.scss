@@ -1,0 +1,23 @@
+.breadcrumbs {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.breadcrumb {
+  list-style: none;
+
+  &:not(:last-child):after {
+    content: '/';
+    padding-inline: 0.5em;
+  }
+
+  a:hover {
+    color: darken($primary, 10%);
+    transition: color 0.2s;
+  }
+
+  .active {
+    color: $primary;
+    font-weight: 500;
+  }
+}

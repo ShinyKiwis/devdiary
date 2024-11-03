@@ -1,0 +1,106 @@
+- add_breadcrumb_node 'Hall of Bugs', bugs_path
+- add_breadcrumb_node 'New Bug'
+
+%h2 Create new bug
+.mt-2
+  = form_with model: @bug do |f|
+    - if @bug.errors.any?
+      = render 'shared/forms/error_messages', object: @bug
+    .row
+      .col-md-6
+        = panel 'Bug details' do
+          %small Bugs are searched by title, description by using elasticsearch.
+          .form-group
+            = f.label :title
+            = f.text_field :title, placeholder: 'Briefly describe the bug'
+            .row
+              .col-md-4
+                = f.label :difficulty_level
+                = f.select :difficulty_level, difficulty_level_collection
+          .form-group
+            = f.label :description
+            = f.text_area :description, placeholder: 'Behavior of the bug', rows: 4
+            = f.label :context
+            = f.text_area :context, placeholder: 'How the bug was found ?', rows: 4
+      .col-md-6
+        = panel 'Environment details' do
+          %small Provide the environment details where the bug was found, if possible.
+          .form-group
+            = f.fields_for :environment do |ff|
+              .row
+                .col-md-4
+                  = ff.label :operating_system
+                  = ff.select :operating_system, operating_system_collection
+                .col-md-4
+                  = ff.label :browser
+                  = ff.select :browser, browser_collection
+                .col-md-4
+                  = ff.label :browser_version
+                  = ff.text_field :browser_version, placeholder: 'Version of the browser'
+              .row
+                .col-md-6
+                  = ff.label :language
+                  = ff.select :language, language_collection
+                .col-md-6
+                  = ff.label :language_version
+                  = ff.text_field :language_version, placeholder: 'Version of the language'
+              .row
+                .col-md-6
+                  = ff.label :framework
+                  = ff.select :framework, [], { prompt: 'Select a language' }
+                .col-md-6
+                  = ff.label :framework_version
+                  = ff.text_field :framework_version, placeholder: 'Version of the framework'
+              .row
+                .col-md-6
+                  = ff.label :database
+                  = ff.select :database, database_collection
+                .col-md-6
+                  = ff.label :database_version
+                  = ff.text_field :database_version, placeholder: 'Version of the database'
+              .row
+                .col-md-12
+                  = ff.label :additional_context
+                  = ff.text_area :additional_context, placeholder: 'Any additional context', rows: 5
+    .mt-2.pull-right
+      = f.submit 'Create', class: 'btn btn-primary'
+  
+
+:javascript
+  document.addEventListener('turbo:load', (event) => {
+    initializeFrameworkSelector(event);
+  });
+
+  document.addEventListener('turbo:render', (event) => {
+    initializeFrameworkSelector(event);
+  })
+
+  function initializeFrameworkSelector(event) {
+    const languageSelector = document.querySelector('#bug_environment_attributes_language');
+
+    if(languageSelector) {
+      const frameworks = #{framework_collection.to_json}
+      const frameworkSelector = document.querySelector('#bug_environment_attributes_framework');
+
+      if(frameworkSelector && frameworkSelector.options.length > 1) {
+        return;
+      }
+
+      languageSelector.addEventListener('change', (event) => {
+        const language = event.target.value;
+        console.log(language)
+        const relatedFrameworks = frameworks[language] || [];
+        if (relatedFrameworks.length > 0) {
+          frameworkSelector.innerHTML = '';
+          relatedFrameworks.forEach((framework) => {
+            const option = document.createElement('option');
+            option.text = JSHelper.capitalize(framework);
+            option.value = framework;
+            frameworkSelector.appendChild(option);
+          });
+        }
+      })
+
+      languageSelector.dispatchEvent(new Event('change'));
+    }
+  }

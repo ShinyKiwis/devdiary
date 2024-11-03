@@ -1,0 +1,4 @@
+.error-messages
+  %ul
+    - object.errors.full_messages.each do |message|
+      %li=icon_with_text('x-square-fill', message)

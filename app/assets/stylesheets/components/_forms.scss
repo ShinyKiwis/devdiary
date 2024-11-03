@@ -1,0 +1,36 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+form {
+  label {
+    display: block;
+    margin: 0.4rem 0rem 0.2rem 0rem;
+    font-weight: 500;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.2rem 0.8rem;
+    border: 1px solid $darkgray;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+
+  select {
+    background-color: $white;
+    width: 100%;
+    padding: 0.2rem 0.8rem;
+    border: 1px solid $darkgray;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+
+  .field_with_errors {
+    input, textarea, select {
+      border-color: $red;
+    }
+  }
+
+}
+

@@ -1,0 +1,23 @@
+@import 'sidebar';
+@import 'columns';
+@import 'panels';
+
+nav {
+  width: 15%;
+  background-color: $lightgray;
+  height: 100vh;
+  border-right: 2px solid $gray;
+  padding: 1.8em 1.5em;
+}
+
+main {
+  width: 85%;
+  height: 100vh;
+  padding: 1.8em 2.4em;
+}
+
+.pull-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

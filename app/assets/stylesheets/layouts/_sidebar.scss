@@ -1,0 +1,44 @@
+nav {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    list-style: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    &.active {
+      background-color: $gray;
+      font-weight: 500;
+    }
+  }
+}
+
+.sidebar-item {
+  margin-bottom: 0.4em;
+
+  a {
+    padding: 0.5em;
+    display: flex;
+    gap: 0.8em;
+    align-content: center;
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-left: 0.5em;
+  margin-bottom: 1.5em;
+
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+    color: $lightblack;
+ }
+}

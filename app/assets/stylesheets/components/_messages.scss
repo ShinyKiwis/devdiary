@@ -1,0 +1,48 @@
+.error-messages {
+  width: 30em;
+  color: $red;
+  background-color: $lightred;
+  padding: 0.8em 1em;
+  font-weight: 500;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+.footer-modal {
+  position: fixed;
+  left: 2%;
+  right: 2%;
+  bottom: 4%;
+  padding: 1.2em;
+  display: flex;
+  gap: 1em;
+  border-radius: 0.5em;
+
+  i {
+    font-size: 2em;
+  }
+
+  .footer-content {
+
+    p {
+      color: $black;
+
+      &:first-child {
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.footer-success {
+  background-color: $lightgreen;
+  border: 1px solid $green;
+  color: $green;
+}
+
+.footer-danger {
+  background-color: $lightred;
+  border: 1px solid $red;
+  color: $red;
+}
