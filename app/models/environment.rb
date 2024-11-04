@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Environment < ApplicationRecord
   FRAMEWORKS = {
     ruby: %w[rails],
@@ -5,7 +7,7 @@ class Environment < ApplicationRecord
     python: %w[django flask],
     java: %w[spring],
     csharp: %w[dotnet],
-    css: %w[bootstrap tailwind vanilla]
+    css: %w[bootstrap tailwind vanilla],
   }
   belongs_to :bug
 
@@ -14,7 +16,7 @@ class Environment < ApplicationRecord
     mac: 'mac',
     linux: 'linux',
     android: 'android',
-    ios: 'ios'
+    ios: 'ios',
   }
 
   enum language: {
@@ -23,12 +25,12 @@ class Environment < ApplicationRecord
     python: 'python',
     java: 'java',
     csharp: 'csharp',
-    css: 'css'
+    css: 'css',
   }
 
   enum database: {
     postgresql: 'postgresql',
-    mysql: 'mysql'
+    mysql: 'mysql',
   }
 
   enum browser: {

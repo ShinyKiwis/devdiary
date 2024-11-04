@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def icon(name)
     content_tag :i, nil, class: "bi bi-#{name}"
@@ -11,6 +13,7 @@ module ApplicationHelper
 
   def current_class?(path)
     return 'active' if path.present? && request.path.include?(path)
+
     ''
   end
 
@@ -37,5 +40,24 @@ module ApplicationHelper
         end
       end.join.html_safe
     end
+  end
+
+  def status_label(key, style = nil)
+    return if key.blank?
+
+    style ||= keyword_to_color(key) || 'primary'
+    content_tag :span, key.titleize, class: "status-label label-#{style}"
+  end
+
+  def keyword_to_color(key)
+    sanitized_key = key.to_s.downcase
+    status_by_keys = {
+      success: %w(success solved easy),
+      danger: %w(closed hard),
+      warning: %w(medium),
+    }
+
+    style, _other_keys = status_by_keys.find { |_, keys| keys.include?(sanitized_key) }
+    style
   end
 end

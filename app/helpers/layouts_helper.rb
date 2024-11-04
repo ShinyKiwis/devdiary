@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LayoutsHelper
   def sidebar(&block)
     content_tag :nav, capture(&block)
@@ -21,7 +23,7 @@ module LayoutsHelper
   end
 
   def action_button(title, path, options = {})
-    link_to title, path, class: options[:class]
+    link_to title, path, class: options[:class], data: options[:data]
   end
 
   def panel(title, &block)

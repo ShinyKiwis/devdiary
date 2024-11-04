@@ -3,18 +3,36 @@ table {
   border-spacing: 0;
   border: 1px solid $darkgray;
   border-radius: 0.5em;
+
+  a {
+    color: $primary !important;
+  }
+
 }
 
+
 thead {
-  background-color: $lightgray;
+  background-color: darken($lightgray, 3%);
 }
 
 th, td {
   padding: 0.6em 1em;
+  border-bottom: 1px solid $darkgray;
 }
-
 
 th {
   font-weight: 600;
   text-align: left;
 }
+
+tbody tr {
+  &:hover {
+    background-color: $lightgray;
+  }
+}
+
+tr:last-child td {
+  border: none;
+}
+
+

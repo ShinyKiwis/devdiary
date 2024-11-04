@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Builders::Base
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::NumberHelper
@@ -12,6 +14,7 @@ class Builders::Base
   end
 
   delegate :capture, to: :view_context
+  delegate :concat, to: :view_context
 
   private
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ComponentsHelper
   def footer_modal(modal_type, title, message)
     icon_name = modal_type == 'success' ? 'check-circle-fill' : 'exclamation-triangle-fill'
@@ -13,4 +15,3 @@ module ComponentsHelper
     Builders::TableBuilder.new(self, options, &block).render
   end
 end
-

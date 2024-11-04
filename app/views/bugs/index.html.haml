@@ -8,6 +8,17 @@
       %th{ width: 100 } BugID
       %th{ width: 300 } Title
       %th{ width: 600 } Description
-      %th{ width: 100 } Status
-      %th{ width: 150 } Difficulty Level
+      %th.text-center{ width: 100 } Status
+      %th.text-center{ width: 150 } Difficulty Level
       %th.text-right Actions
+    = t.body collection: @bugs do |bug|
+      %td= link_to bug.id, bug_path(bug)
+      %td= bug.title
+      %td= bug.description
+      %td.text-center= status_label(bug.status)
+      %td.text-center= status_label(bug.difficulty_level)
+      %td.text-right
+        = action_buttons do
+          = action_button 'View', bug_path(bug), class: 'btn btn-success'
+          = action_button 'Edit', edit_bug_path(bug), class: 'btn btn-primary'
+          = action_button 'Delete', bug_path(bug), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger'

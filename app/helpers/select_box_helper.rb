@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SelectBoxHelper
   def difficulty_level_collection
     Bug.difficulty_levels.keys.map { |difficulty_level| [difficulty_level.titleize, difficulty_level] }

@@ -3,19 +3,40 @@
   text-align: center;
   user-select: none;
   padding: 0.2em 1.2em;
-  border-radius: 1em;
+  border-radius: 0.5em;
   font-weight: 500;
+  font-size: 0.9em;
   color: $white !important;
   cursor: pointer;
+  margin-left: 0.5em;
 }
 
 .btn-primary {
   width: fit-content !important;
   background-color: $primary;
-  border: 1px solid $primary;
 
   &:hover {
     background-color: darken($primary, 10%);
+    transition: background-color 0.2s;
+  }
+}
+
+.btn-success {
+  width: fit-content !important;
+  background-color: $green;
+
+  &:hover {
+    background-color: darken($green, 10%);
+    transition: background-color 0.2s;
+  }
+}
+
+.btn-danger {
+  width: fit-content !important;
+  background-color: $red;
+
+  &:hover {
+    background-color: darken($red, 10%);
     transition: background-color 0.2s;
   }
 }

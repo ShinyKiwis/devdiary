@@ -1,3 +1,4 @@
+// Messages
 .error-messages {
   width: 30em;
   color: $red;
@@ -8,6 +9,7 @@
   margin-bottom: 1em;
 }
 
+// Modals
 .footer-modal {
   position: fixed;
   left: 2%;
@@ -45,4 +47,32 @@
   background-color: $lightred;
   border: 1px solid $red;
   color: $red;
+}
+
+// Status
+.status-label {
+  padding: 0.2em 1em;
+  border-radius: 2em;
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.label-primary {
+  background-color: lighten($primary, 40%);
+  color: $primary;
+}
+
+.label-success {
+  background-color: lighten($success, 40%);
+  color: $success;
+}
+
+.label-warning {
+  background-color: lighten($warning, 42%);
+  color: $warning;
+}
+
+.label-danger {
+  background-color: $lightred;
+  color: $danger;
 }
