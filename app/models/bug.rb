@@ -18,14 +18,14 @@ class Bug < ApplicationRecord
   aasm column: :status do
     state :open, initial: true
     state :in_progress
-    state :solved
+    state :resolved
     state :closed
 
     event :start do
       transitions from: :open, to: :in_progress
     end
 
-    event :solve do
+    event :resolve do
       transitions from: :in_progress, to: :solved
     end
 

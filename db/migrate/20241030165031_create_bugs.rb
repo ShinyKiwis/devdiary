@@ -7,6 +7,8 @@ class CreateBugs < ActiveRecord::Migration[7.1]
       t.text :context
       t.string :difficulty_level
       t.integer :time_to_resolve
+      t.string :solution
+      t.string :explanation
 
       t.timestamps
     end

@@ -4,6 +4,7 @@
   user-select: none;
   padding: 0.2em 1.2em;
   border-radius: 0.5em;
+  border: none;
   font-weight: 500;
   font-size: 0.9em;
   color: $white !important;
@@ -27,6 +28,16 @@
 
   &:hover {
     background-color: darken($green, 10%);
+    transition: background-color 0.2s;
+  }
+}
+
+.btn-warning {
+  width: fit-content !important;
+  background-color: $yellow;
+
+  &:hover {
+    background-color: darken($yellow, 10%);
     transition: background-color 0.2s;
   }
 }

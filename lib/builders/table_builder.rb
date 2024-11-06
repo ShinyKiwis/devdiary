@@ -27,6 +27,6 @@ class Builders::TableBuilder < Builders::Base
   private
 
   def empty_message
-    options[:empty_message].presence || 'No records found'
+    options[:empty_message].presence || 'No records found!'
   end
 end

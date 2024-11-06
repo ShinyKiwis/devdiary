@@ -2,5 +2,9 @@
 
 Rails.application.routes.draw do
   root to: 'bugs#index'
-  resources :bugs
+  resources :bugs do
+    patch :investigate, on: :member
+    patch :resolve, on: :member
+    patch :close, on: :member
+  end
 end

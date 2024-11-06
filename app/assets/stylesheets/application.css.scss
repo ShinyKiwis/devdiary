@@ -15,11 +15,13 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: $primary;
 }
 
-a:visited {
-  color: inherit;
+h1 {
+  a {
+    color: $black;
+  }
 }
 
 ul {

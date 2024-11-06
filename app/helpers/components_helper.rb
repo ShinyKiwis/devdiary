@@ -14,4 +14,8 @@ module ComponentsHelper
   def table(options = {}, &block)
     Builders::TableBuilder.new(self, options, &block).render
   end
+
+  def description_table(options = {}, &block)
+    Builders::DescriptionTableBuilder.new(self, options, &block).render
+  end
 end

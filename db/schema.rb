@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_30_165307) do
     t.text "context"
     t.string "difficulty_level"
     t.integer "time_to_resolve"
+    t.string "solution"
+    t.string "explanation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

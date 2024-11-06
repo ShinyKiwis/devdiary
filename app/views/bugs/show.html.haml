@@ -1,2 +1,36 @@
 - add_breadcrumb_node 'Hall of Bugs', bugs_path
 - add_breadcrumb_node "Bug##{@bug.id}"
+
+= action_buttons do
+  = action_button 'Edit', edit_bug_path(@bug), class: 'btn btn-primary'
+  - if @bug.open?
+    = action_button 'Investigate', investigate_bug_path(@bug), class: 'btn btn-warning', data: { turbo_method: :patch, turbo_confirm: 'Are you ready?' }
+  - if @bug.in_progress?
+    = action_button 'Resolve', resolve_bug_path(@bug), class: 'btn btn-success', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' }
+  - if @bug.may_close?
+    = action_button 'Close', close_bug_path(@bug), class: 'btn btn-danger', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' }
+
+.row
+  .col-md-4
+    = panel 'Bug details' do
+      = description_table label_width: 200 do |d|
+        = d.line 'Title', @bug.title
+        = d.line 'Description', @bug.description
+        = d.line 'Status', status_label(@bug.status)
+        = d.line 'Difficulty Level', status_label(@bug.difficulty_level)
+        = d.line 'Context', @bug.context
+        = d.line 'Time To Resolve', @bug.time_to_resolve
+        = d.line 'Created at', @bug.created_at.strftime('%H:%M -  %d %b %Y'), classname: 'text-date'
+    .mt-2
+      = panel 'Environment_details' do
+        = description_table label_width: 200 do |d|
+          = d.line 'Operating System', @bug.environment.operating_system
+          = d.line 'Browser', @bug.environment.browser
+          = d.line 'Browser Version', @bug.environment.browser_version
+          = d.line 'Language', @bug.environment.language
+          = d.line 'Language Version', @bug.environment.language_version
+          = d.line 'Framework', @bug.environment.framework
+          = d.line 'Framework Version', @bug.environment.framework_version
+          = d.line 'Database', @bug.environment.database
+          = d.line 'Database Version', @bug.environment.database_version
+  .col-md-8

@@ -36,6 +36,30 @@ class BugsController < ApplicationController
     redirect_to bugs_path, status: 303
   end
 
+  def investigate
+    @bug = Bug.find(params[:id])
+    @bug.start!
+
+    flash[:footer_modal] = { type: 'success', title: 'Investigation started!', message: 'Your bug is now under investigation. Good luck!' }
+    redirect_to bug_path(@bug), status: 303
+  end
+
+  def resolve
+    @bug = Bug.find(params[:id])
+    @bug.resolve!
+
+    flash[:footer_modal] = { type: 'success', title: 'Bug resolved!', message: 'Your bug has been successfully resolved. Good job!' }
+    redirect_to bug_path(@bug), status: 303
+  end
+
+  def close
+    @bug = Bug.find(params[:id])
+    @bug.close!
+
+    flash[:footer_modal] = { type: 'success', title: 'Bug closed!', message: 'Your bug has been successfully closed.' }
+    redirect_to bug_path(@bug), status: 303
+  end
+
   private
 
   def bug_params

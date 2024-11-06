@@ -30,17 +30,17 @@
               .row
                 .col-md-4
                   = ff.label :operating_system
-                  = ff.select :operating_system, operating_system_collection
+                  = ff.select :operating_system, operating_system_collection, { prompt: 'Select an OS' }
                 .col-md-4
                   = ff.label :browser
-                  = ff.select :browser, browser_collection
+                  = ff.select :browser, browser_collection, { prompt: 'Select a browser' }
                 .col-md-4
                   = ff.label :browser_version
                   = ff.text_field :browser_version, placeholder: 'Version of the browser'
               .row
                 .col-md-6
                   = ff.label :language
-                  = ff.select :language, language_collection
+                  = ff.select :language, language_collection, { prompt: 'Select a language' }
                 .col-md-6
                   = ff.label :language_version
                   = ff.text_field :language_version, placeholder: 'Version of the language'
@@ -54,7 +54,7 @@
               .row
                 .col-md-6
                   = ff.label :database
-                  = ff.select :database, database_collection
+                  = ff.select :database, database_collection, { prompt: 'Select a database' }
                 .col-md-6
                   = ff.label :database_version
                   = ff.text_field :database_version, placeholder: 'Version of the database'
