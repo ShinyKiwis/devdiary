@@ -1,0 +1,8 @@
+- add_breadcrumb_node 'Hall of Bugs', bugs_path
+- add_breadcrumb_node "Bug##{@bug.id}", bug_path(@bug)
+- add_breadcrumb_node 'Edit'
+
+%h2 Edit Bug##{@bug.id}
+.mt-2
+  = render 'form'
+

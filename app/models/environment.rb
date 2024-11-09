@@ -13,7 +13,7 @@ class Environment < ApplicationRecord
 
   enum operating_system: {
     windows: 'windows',
-    mac: 'mac',
+    macos: 'macos',
     linux: 'linux',
     android: 'android',
     ios: 'ios',

@@ -17,6 +17,10 @@ module ApplicationHelper
     ''
   end
 
+  def formatted_environment_detail(object, object_version)
+    [object.presence&.titleize, object_version.presence].compact.join('-')
+  end
+
   def add_breadcrumb_node(text, path = nil)
     @breadcrumb_nodes ||= []
     @breadcrumb_nodes << { text: text, path: path }
@@ -59,5 +63,24 @@ module ApplicationHelper
 
     style, _other_keys = status_by_keys.find { |_, keys| keys.include?(sanitized_key) }
     style
+  end
+
+  def environment_icons
+    {
+      windows: 'windows',
+      macos: 'apple',
+      linux: 'ubuntu',
+      android: 'android',
+      ios: 'apple',
+      firefox: 'browser-firefox',
+      chrome: 'browser-chrome',
+      safari: 'browser-safari',
+    }.with_indifferent_access
+  end
+
+  def environment_detail_with_icon(platform, platform_version)
+    return nil if platform.blank? && platform_version.blank?
+
+    icon_with_text(environment_icons[platform], formatted_environment_detail(platform, platform_version))
   end
 end

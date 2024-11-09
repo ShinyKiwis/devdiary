@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BugsController < ApplicationController
+  before_action :find_object, only: %i[show edit update destroy investigate resolve close]
   def index
     @bugs = Bug.all
   end
@@ -22,14 +23,21 @@ class BugsController < ApplicationController
   end
 
   def show
-    @bug = Bug.find(params[:id])
   end
 
   def edit
   end
 
+  def update
+    if @bug.update(bug_params)
+      flash[:footer_modal] = { type: 'success', title: 'Bug updated!', message: 'Your bug has been successfully updated.' }
+      redirect_to bug_path(@bug), status: 303
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
-    @bug = Bug.find(params[:id])
     @bug.destroy
 
     flash[:footer_modal] = { type: 'success', title: 'Bug squashed!', message: 'Your bug has been successfully deleted.' }
@@ -37,7 +45,6 @@ class BugsController < ApplicationController
   end
 
   def investigate
-    @bug = Bug.find(params[:id])
     @bug.start!
 
     flash[:footer_modal] = { type: 'success', title: 'Investigation started!', message: 'Your bug is now under investigation. Good luck!' }
@@ -45,7 +52,6 @@ class BugsController < ApplicationController
   end
 
   def resolve
-    @bug = Bug.find(params[:id])
     @bug.resolve!
 
     flash[:footer_modal] = { type: 'success', title: 'Bug resolved!', message: 'Your bug has been successfully resolved. Good job!' }
@@ -53,7 +59,6 @@ class BugsController < ApplicationController
   end
 
   def close
-    @bug = Bug.find(params[:id])
     @bug.close!
 
     flash[:footer_modal] = { type: 'success', title: 'Bug closed!', message: 'Your bug has been successfully closed.' }
@@ -81,5 +86,9 @@ class BugsController < ApplicationController
         :additional_context,
       ],
     )
+  end
+
+  def find_object
+    @bug ||= Bug.find(params[:id])
   end
 end

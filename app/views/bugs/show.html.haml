@@ -10,7 +10,7 @@
   - if @bug.may_close?
     = action_button 'Close', close_bug_path(@bug), class: 'btn btn-danger', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' }
 
-.row
+.row.mt-2
   .col-md-4
     = panel 'Bug details' do
       = description_table label_width: 200 do |d|
@@ -22,15 +22,16 @@
         = d.line 'Time To Resolve', @bug.time_to_resolve
         = d.line 'Created at', @bug.created_at.strftime('%H:%M -  %d %b %Y'), classname: 'text-date'
     .mt-2
-      = panel 'Environment_details' do
+      = panel 'Environment details' do
         = description_table label_width: 200 do |d|
-          = d.line 'Operating System', @bug.environment.operating_system
-          = d.line 'Browser', @bug.environment.browser
-          = d.line 'Browser Version', @bug.environment.browser_version
-          = d.line 'Language', @bug.environment.language
-          = d.line 'Language Version', @bug.environment.language_version
-          = d.line 'Framework', @bug.environment.framework
-          = d.line 'Framework Version', @bug.environment.framework_version
-          = d.line 'Database', @bug.environment.database
-          = d.line 'Database Version', @bug.environment.database_version
+          - environment = @bug.environment
+          = d.line 'Operating System', environment_detail_with_icon(environment.operating_system, '')
+          = d.line 'Browser', environment_detail_with_icon(environment.browser, environment.browser_version)
+          = d.line 'Language', environment_detail_with_icon(environment.language, environment.language_version)
+          = d.line 'Framework', environment_detail_with_icon(environment.framework, environment.framework_version)
+          = d.line 'Database', environment_detail_with_icon(environment.database, environment.database_version)
   .col-md-8
+    = accordion title: 'Solution' do
+      %p 123
+    = accordion title: 'Explanation' do
+      %p 456
