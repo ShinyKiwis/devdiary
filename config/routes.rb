@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     patch :close, on: :member
     get :resolving , on: :member
   end
+
+  resources :uploads, only: %i[create destroy]
 end
