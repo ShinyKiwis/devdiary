@@ -26,8 +26,8 @@ module LayoutsHelper
     link_to title, path, class: options[:class], data: options[:data]
   end
 
-  def panel(title, &block)
-    content_tag :div, class: 'panel' do
+  def panel(title, options = {}, &block)
+    content_tag :div, class: "panel #{options[:class]}" do
       content_tag(:h3, title, class: 'panel-title') + capture(&block)
     end
   end

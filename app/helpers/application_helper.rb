@@ -56,7 +56,7 @@ module ApplicationHelper
   def keyword_to_color(key)
     sanitized_key = key.to_s.downcase
     status_by_keys = {
-      success: %w(success solved easy),
+      success: %w(success resolved easy),
       danger: %w(closed hard),
       warning: %w(medium),
     }
@@ -82,5 +82,13 @@ module ApplicationHelper
     return nil if platform.blank? && platform_version.blank?
 
     icon_with_text(environment_icons[platform], formatted_environment_detail(platform, platform_version))
+  end
+
+  def quill_delta_to_html(deltaOps)
+    return if deltaOps.blank?
+
+    content_tag :div, data: {controller: 'delta-converter'} do
+      deltaOps
+    end
   end
 end

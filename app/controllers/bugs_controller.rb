@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BugsController < ApplicationController
-  before_action :find_object, only: %i[show edit update destroy investigate resolve close]
+  before_action :find_object, only: %i[show edit update destroy resolving investigate resolve close]
   def index
     @bugs = Bug.all
   end
@@ -28,6 +28,9 @@ class BugsController < ApplicationController
   def edit
   end
 
+  def resolving
+  end
+
   def update
     if @bug.update(bug_params)
       flash[:footer_modal] = { type: 'success', title: 'Bug updated!', message: 'Your bug has been successfully updated.' }
@@ -52,9 +55,10 @@ class BugsController < ApplicationController
   end
 
   def resolve
-    @bug.resolve!
+    @bug.try_resolve!
+    @bug.update(bug_params)
 
-    flash[:footer_modal] = { type: 'success', title: 'Bug resolved!', message: 'Your bug has been successfully resolved. Good job!' }
+    flash[:footer_modal] = { type: 'success', title: 'Bug solution updated!', message: 'Your solution has been updated. Good job!' }
     redirect_to bug_path(@bug), status: 303
   end
 
@@ -73,6 +77,8 @@ class BugsController < ApplicationController
       :difficulty_level,
       :description,
       :context,
+      :solution,
+      :explanation,
       environment_attributes: [
         :operating_system,
         :language,

@@ -32,4 +32,8 @@ module ComponentsHelper
   def description_table(options = {}, &block)
     Builders::DescriptionTableBuilder.new(self, options, &block).render
   end
+
+  def editor(id, options = {})
+    content_tag(:div, nil, id: id, class: 'editor', data: { controller: 'editor', editor_content: options[:content] })
+  end
 end

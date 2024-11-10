@@ -26,7 +26,7 @@ class Bug < ApplicationRecord
     end
 
     event :resolve do
-      transitions from: :in_progress, to: :solved
+      transitions from: :in_progress, to: :resolved
     end
 
     event :close do
@@ -34,4 +34,9 @@ class Bug < ApplicationRecord
       transitions from: :in_progress, to: :closed
     end
   end
+
+  def try_resolve!
+    self.resolve! if self.may_resolve?
+  end
+
 end

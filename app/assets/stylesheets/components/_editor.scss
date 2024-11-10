@@ -1,0 +1,24 @@
+@import 'quill/dist/quill.core';
+@import 'quill/dist/quill.snow';
+@import 'highlight.js/styles/tokyo-night-dark';
+
+
+.editor {
+  height: 35em;
+  overflow: auto;
+
+  img {
+    width: 50%;
+    height: auto;
+    display: block;
+  }
+
+  .ql-code-block-container {
+    min-height: 4em;
+
+    select {
+      width: fit-content;
+    }
+  }
+}
+

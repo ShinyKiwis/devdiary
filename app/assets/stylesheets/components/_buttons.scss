@@ -2,7 +2,7 @@
   display: inline-block;
   text-align: center;
   user-select: none;
-  padding: 0.2em 1.2em;
+  padding: 0.4em 1.4em;
   border-radius: 0.5em;
   border: none;
   font-weight: 500;
@@ -10,10 +10,10 @@
   color: $white !important;
   cursor: pointer;
   margin-left: 0.5em;
+  width: fit-content !important;
 }
 
 .btn-primary {
-  width: fit-content !important;
   background-color: $primary;
 
   &:hover {
@@ -23,7 +23,6 @@
 }
 
 .btn-success {
-  width: fit-content !important;
   background-color: $green;
 
   &:hover {
@@ -33,7 +32,6 @@
 }
 
 .btn-warning {
-  width: fit-content !important;
   background-color: $yellow;
 
   &:hover {
@@ -43,7 +41,6 @@
 }
 
 .btn-danger {
-  width: fit-content !important;
   background-color: $red;
 
   &:hover {
@@ -51,3 +48,13 @@
     transition: background-color 0.2s;
   }
 }
+
+.btn-info {
+  background-color: $aquamarine;
+
+  &:hover {
+    background-color: darken($aquamarine, 10%);
+    transition: background-color 0.2s;
+  }
+}
+

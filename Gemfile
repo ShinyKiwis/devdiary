@@ -72,3 +72,4 @@ group :development do
 end
 
 gem 'aasm', '~> 5.5'
+gem 'draper'
