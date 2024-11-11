@@ -9,8 +9,6 @@ class Builders::DescriptionTableBuilder < Builders::Base
 
   def line(label, value = nil, classname: nil)
     value ||= capture(&block) if block_given?
-    puts value
-
     content_tag :tr do
       concat content_tag(:th, label, width: options[:label_width] || 150)
       concat content_tag(:td, value.presence || 'N/A', class: classname)

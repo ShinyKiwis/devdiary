@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     patch :investigate, on: :member
     patch :resolve, on: :member
     patch :close, on: :member
-    get :resolving , on: :member
+    get :resolving, on: :member
   end
 
   resources :uploads, only: %i[create destroy]

@@ -79,16 +79,16 @@ module ApplicationHelper
   end
 
   def environment_detail_with_icon(platform, platform_version)
-    return nil if platform.blank? && platform_version.blank?
+    return if platform.blank? && platform_version.blank?
 
     icon_with_text(environment_icons[platform], formatted_environment_detail(platform, platform_version))
   end
 
-  def quill_delta_to_html(deltaOps)
-    return if deltaOps.blank?
+  def quill_delta_to_html(delta_ops)
+    return if delta_ops.blank?
 
-    content_tag :div, data: {controller: 'delta-converter'} do
-      deltaOps
+    content_tag :div, data: { controller: 'delta-converter' } do
+      delta_ops
     end
   end
 end

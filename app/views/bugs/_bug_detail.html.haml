@@ -1,0 +1,10 @@
+= panel 'Bug Context' do
+  = quill_delta_to_html(bug.context)
+= panel 'Bug details', class: 'mt-2' do
+  = description_table label_width: 200 do |d|
+    = d.line 'Title', bug.title
+    = d.line 'Description', bug.description
+    = d.line 'Status', status_label(bug.status)
+    = d.line 'Difficulty Level', status_label(bug.difficulty_level)
+    = d.line 'Time To Resolve', bug.time_to_resolve
+    = d.line 'Created at', bug.created_at.strftime('%H:%M -  %d %b %Y'), classname: 'text-date'

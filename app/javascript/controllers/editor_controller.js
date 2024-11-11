@@ -1,12 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 import Quill from "quill"
 import hljs from 'highlight.js';
-import ImageUploader from "quill-image-uploader";
 
 export default class extends Controller {
   connect() {
-    Quill.register('modules/imageUploader', ImageUploader);
-
     this.editor = new Quill(this.element, {
       modules: {
         history: {
@@ -15,23 +12,7 @@ export default class extends Controller {
           userOnly: true
         },
         syntax: { hljs },
-        toolbar: this.toolbarOptions(),
-        imageUploader: {
-          upload: file => {
-            return new Promise((resolve, reject) => {
-              const formData = new FormData();
-              formData.append('file', file);
-
-              fetch('/uploads', {
-                method: 'POST',
-                body: formData
-              })
-              .then(response => response.json())
-              .then(data => resolve(data.url))
-              .catch(error => reject('Upload failed: ' + error));
-            });
-          }
-        }
+        toolbar: this.toolbarOptions()
       },
       placeholder: 'Time to see your investigation results...',
       theme: 'snow'
@@ -49,7 +30,7 @@ export default class extends Controller {
       [
         [{ 'font': [] }],
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline', 'strike', 'link', 'image'],
+        ['bold', 'italic', 'underline', 'strike', 'link'],
         ['blockquote', 'code-block'],
       
         [{ 'header': 1 }, { 'header': 2 }],

@@ -5,8 +5,11 @@ class Bug < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :context, presence: true
 
   has_one :environment, dependent: :destroy
+  has_many_attached :attachments
+
   accepts_nested_attributes_for :environment
 
   enum difficulty_level: {
@@ -36,7 +39,6 @@ class Bug < ApplicationRecord
   end
 
   def try_resolve!
-    self.resolve! if self.may_resolve?
+    resolve! if may_resolve?
   end
-
 end

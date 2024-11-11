@@ -4,27 +4,8 @@
 
 .row.mt-2
   .col-md-4
-    = panel 'Bug Context' do
-      = @bug.context
-    = panel 'Bug details', class: 'mt-2' do
-      = description_table label_width: 200 do |d|
-        = d.line 'Title', @bug.title
-        = d.line 'Description', @bug.description
-        = d.line 'Status', status_label(@bug.status)
-        = d.line 'Difficulty Level', status_label(@bug.difficulty_level)
-        = d.line 'Time To Resolve', @bug.time_to_resolve
-        = d.line 'Created at', @bug.created_at.strftime('%H:%M -  %d %b %Y'), classname: 'text-date'
-    - if @bug.environment.additional_context.present?
-      = panel 'Additional Context', class: 'mt-2' do
-        = @bug.environment.additional_context
-    = panel 'Environment details', class: 'mt-2' do
-      = description_table label_width: 200 do |d|
-        - environment = @bug.environment
-        = d.line 'Operating System', environment_detail_with_icon(environment.operating_system, '')
-        = d.line 'Browser', environment_detail_with_icon(environment.browser, environment.browser_version)
-        = d.line 'Language', environment_detail_with_icon(environment.language, environment.language_version)
-        = d.line 'Framework', environment_detail_with_icon(environment.framework, environment.framework_version)
-        = d.line 'Database', environment_detail_with_icon(environment.database, environment.database_version)
+    = render 'bug_detail', bug: @bug
+    = render 'environment_detail', environment: @bug.environment
   .col-md-8
     = form_with model: @bug, url: resolve_bug_path(@bug), method: :patch do |f|
       = panel 'Solution', class: 'editor' do
@@ -34,5 +15,8 @@
         %small Provide additional information for the solution here!
         = f.hidden_field :explanation, id: 'explanation-editor-content'
         = editor 'explanation-editor', content: @bug.explanation
+      = panel 'Attachments', class: 'mt-2' do
+        %small Attach any files that help to explain the solution. The images will be overriden if you upload new ones.
+        = f.file_field :attachments, multiple: true, value: @bug.attachments
       .mt-2.pull-right
         = f.submit 'Update solution', class: 'btn btn-success'

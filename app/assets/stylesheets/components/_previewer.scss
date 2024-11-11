@@ -1,0 +1,18 @@
+.previewer {
+  display: flex;
+  gap: 1em;
+  overflow-x: auto;
+
+  img {
+    width: 16em;
+    height: 16em;
+    border-radius: 0.4em;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 0.5em 0.1em rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transform: scale(0.9);
+    }
+  }
+}

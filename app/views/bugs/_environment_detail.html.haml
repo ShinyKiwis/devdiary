@@ -1,0 +1,10 @@
+- if environment.additional_context.present?
+  = panel 'Environment Additional Context', class: 'mt-2' do
+    = environment.additional_context
+= panel 'Environment details', class: 'mt-2' do
+  = description_table label_width: 200 do |d|
+    = d.line 'Operating System', environment_detail_with_icon(environment.operating_system, '')
+    = d.line 'Browser', environment_detail_with_icon(environment.browser, environment.browser_version)
+    = d.line 'Language', environment_detail_with_icon(environment.language, environment.language_version)
+    = d.line 'Framework', environment_detail_with_icon(environment.framework, environment.framework_version)
+    = d.line 'Database', environment_detail_with_icon(environment.database, environment.database_version)

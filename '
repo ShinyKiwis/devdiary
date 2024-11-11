@@ -55,13 +55,10 @@ class BugsController < ApplicationController
   end
 
   def resolve
+    @bug.try_resolve!
     @bug.assign_attributes(bug_params.except(:attachments))
-    ActiveRecord::Base.transaction do
-      if @bug.try_resolve! || @bug.save
-        @bug.attachments.purge
-        @bug.attachments.attach(bug_params[:attachments]) if bug_params[:attachments].present?
-      end
-    end
+    binding.break
+    @bug.attachments.attach(bug_params[:attachments]) if bug_params[:attachments].present?
 
     flash[:footer_modal] = { type: 'success', title: 'Bug solution updated!', message: 'Your solution has been updated. Good job!' }
     redirect_to bug_path(@bug), status: 303
@@ -96,7 +93,7 @@ class BugsController < ApplicationController
         :browser_version,
         :additional_context,
       ],
-      attachments: [],
+      attachments: []
     )
   end
 

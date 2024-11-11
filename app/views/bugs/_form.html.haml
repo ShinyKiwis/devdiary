@@ -16,7 +16,8 @@
           = f.label :description
           = f.text_area :description, placeholder: 'Behavior of the bug', rows: 4
           = f.label :context
-          = f.text_area :context, placeholder: 'How the bug was found ?', rows: 4
+          = f.hidden_field :context, id: 'context-editor-content'
+          = editor 'context-editor', content: @bug.context
     .col-md-6
       = panel 'Environment details' do
         %small Provide the environment details where the bug was found, if possible.

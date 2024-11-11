@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
 class BugDecorator < ApplicationDecorator
   def formatted_result(result)
-    case true
-    when object.open?
+    if object.open?
       content_tag(:small, 'Waiting for investigation!')
-    when object.in_progress?
+    elsif object.in_progress?
       content_tag(:small, 'Investigating!')
-    when object.resolved?
+    elsif object.resolved?
       result.presence || content_tag(:small, 'No given result!')
     end
+  end
+
+  def formatted_field_info(info)
+    info.presence || content_tag(:small, 'Not available! Considering to update!')
   end
 end
