@@ -3,7 +3,7 @@
 class BugsController < ApplicationController
   before_action :find_object, only: %i[show edit update destroy resolving investigate resolve close]
   def index
-    @bugs = Bug.all
+    @bugs = Bug.page(params[:page]).per(Settings[:kaminari][:per_page])
   end
 
   def new

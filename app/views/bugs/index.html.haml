@@ -22,3 +22,5 @@
           = action_button 'View', bug_path(bug), class: 'btn btn-success'
           = action_button 'Edit', edit_bug_path(bug), class: 'btn btn-primary'
           = action_button 'Delete', bug_path(bug), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+  = render_pagination @bugs

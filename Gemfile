@@ -73,3 +73,4 @@ end
 
 gem 'aasm', '~> 5.5'
 gem 'draper'
+gem 'kaminari', '~> 1.2'

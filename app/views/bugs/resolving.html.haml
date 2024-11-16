@@ -17,6 +17,6 @@
         = editor 'explanation-editor', content: @bug.explanation
       = panel 'Attachments', class: 'mt-2' do
         %small Attach any files that help to explain the solution. The images will be overriden if you upload new ones.
-        = f.file_field :attachments, multiple: true, value: @bug.attachments
+        = f.file_field :attachments, multiple: true
       .mt-2.pull-right
         = f.submit 'Update solution', class: 'btn btn-success'
